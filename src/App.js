@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import movieData from './data.js';
+import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      movies: movieData.movies,
+      singleMovieView: false
+    }
+  }
+
+  render () {
+    return (
+      <main className="main-dashboard">
+        // insert header component here
+        <h1>Here</h1>
+        <section className="movie-container">
+          < MovieContainer movies={this.state.movies} />
+        </section>
+      </main>
+    )
+  }
 }
 
 export default App;
