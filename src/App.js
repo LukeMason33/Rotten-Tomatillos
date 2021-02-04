@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './index.scss';
-import movieData from './data.js';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-bar-component.js';
 import fetchRequests from './fetch-requests.js';
@@ -10,7 +9,8 @@ class App extends React.Component {
     super();
     this.state = {
       movies: [],
-      singleMovieView: false
+      singleMovieView: false,
+      isLoading: true,
     }
   }
 
@@ -22,7 +22,7 @@ class App extends React.Component {
           fetchRequests.getSingleMovie(movie.id)
             .then(response => {
               allMovieInfo.push(response.movie);
-              this.setState({movies: allMovieInfo})
+              this.setState({movies: allMovieInfo, isLoading: false})
             })
         })
       })
@@ -33,8 +33,8 @@ class App extends React.Component {
     return (
       <main className="main-dashboard">
         <Header />
-        <h1>Here</h1>
         <section className="movie-container">
+          {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
           < MovieContainer movies={this.state.movies} />
         </section>
       </main>
