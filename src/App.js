@@ -18,7 +18,7 @@ class App extends React.Component {
         // insert header component here
         <h1>Here</h1>
         <section className="movie-container">
-          < MovieContainer movies={...this.state} />
+          < MovieContainer movies={this.state.movies} />
         </section>
       </main>
     )
