@@ -14,6 +14,11 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    fetchRequests.getAllMovies()
+      .then(response => this.setState({movies: response.movies}))
+  }
+
   render () {
     return (
       <main className="main-dashboard">
@@ -28,5 +33,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-console.log(fetchRequests.getAllMovies());
