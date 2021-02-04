@@ -3,12 +3,13 @@ import './index.scss';
 import movieData from './data.js';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-bar-component.js';
+import fetchRequests from './fetch-requests.js';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: movieData.movies,
+      movies: [],
       singleMovieView: false
     }
   }
@@ -27,3 +28,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+console.log(fetchRequests.getAllMovies());
