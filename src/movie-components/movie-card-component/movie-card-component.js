@@ -1,8 +1,11 @@
+import React, { Component } from 'react';
+
+
 function MovieCard (props) {
   return (
     <div className='movie-card'>
-      <img src={props.poster_path}/>
       <h1>{props.title}</h1>
+      <img src={props.poster_path}/>
       <div>
         <h2>Genre</h2>
         <p>*Insert Genre Here*</p>
