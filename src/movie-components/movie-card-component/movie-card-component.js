@@ -7,8 +7,8 @@ function MovieCard (props) {
       <h1>{props.title}</h1>
       <img src={props.poster_path}/>
       <div>
-        <h2>Genre</h2>
-        <p>*Insert Genre Here*</p>
+        <h2>Genre(s)</h2>
+        <p>{props.genres.join(' ')}</p>
       </div>
       <div>
         <h2>Rating</h2>

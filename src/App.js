@@ -15,9 +15,19 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    let allMovieInfo = [];
     fetchRequests.getAllMovies()
-      .then(response => this.setState({movies: response.movies}))
-  }
+      .then(response => {
+        response.movies.forEach(movie => {
+          fetchRequests.getSingleMovie(movie.id)
+            .then(response => {
+              allMovieInfo.push(response.movie);
+              this.setState({movies: allMovieInfo})
+            })
+        })
+      })
+    }
+
 
   render () {
     return (
