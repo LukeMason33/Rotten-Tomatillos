@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './index.scss';
 import movieData from './data.js';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
@@ -29,7 +29,6 @@ class App extends React.Component {
     return (
       <main className="main-dashboard">
         <Header onChange={event => this.changeHandler(event)}/>
-        <h1>Here</h1>
         <section className="movie-container">
           < MovieContainer movies={this.state.movies} />
         </section>
