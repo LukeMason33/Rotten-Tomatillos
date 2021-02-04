@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import movieData from './data.js';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
+import Header from './header-components/header-bar-component.js';
 
 class App extends React.Component {
   constructor() {
@@ -15,7 +16,7 @@ class App extends React.Component {
   render () {
     return (
       <main className="main-dashboard">
-        // insert header component here
+        <Header />
         <h1>Here</h1>
         <section className="movie-container">
           < MovieContainer movies={this.state.movies} />
