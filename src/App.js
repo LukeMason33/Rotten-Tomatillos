@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './index.scss';
 import movieData from './data.js';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-bar-component.js';
