@@ -4,7 +4,7 @@ import MovieContainer from './movie-components/movie-container-component/movie-c
 import Header from './header-components/header-bar-component.js';
 import fetchRequests from './fetch-requests.js';
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -33,10 +33,10 @@ class App extends React.Component {
     return (
       <main className="main-dashboard">
         <Header />
-        <section className="movie-container">
+        <article className="movie-container">
           {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
           < MovieContainer movies={this.state.movies} />
-        </section>
+        </article>
       </main>
     )
   }
