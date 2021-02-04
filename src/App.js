@@ -28,6 +28,10 @@ class App extends Component {
       })
     }
 
+    displaySingleMovieInfo(event) {
+      this.setState({singleMovieView: true})
+    }
+
 
   render () {
     return (
