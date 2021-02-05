@@ -14,6 +14,7 @@ function MovieCard (props) {
         <h2>Rating</h2>
         <p>{props.average_rating.toFixed(2)}</p>
       </div>
+      <button className="movie-details-btn">Details</button>
     </section>
   )
 }

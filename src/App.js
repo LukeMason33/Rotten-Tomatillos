@@ -37,10 +37,8 @@ class App extends Component {
     return (
       <main className="main-dashboard">
         <Header />
-        <article className="movie-container">
-          {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
-          < MovieContainer movies={this.state.movies} />
-        </article>
+        {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
+        {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} />}
       </main>
     )
   }
