@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './index.scss';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-component.js';
@@ -42,6 +42,7 @@ class App extends Component {
             })
         })
       })
+
     }
 
   render () {
