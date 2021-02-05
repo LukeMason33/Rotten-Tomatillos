@@ -1,7 +1,7 @@
 function HeaderFilter(props) {
     return (
       <div className="header-filter">
-        Dropdown Placeholder
+        Genres ⬇
       </div>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './index.scss';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-component.js';
@@ -42,6 +42,7 @@ class App extends Component {
             })
         })
       })
+
     }
 
   render () {
@@ -49,7 +50,7 @@ class App extends Component {
       <main className="main-dashboard">
         <Header onChange={event => this.changeHandler(event)}/>
         <section className="movie-container">
-          {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
+          {this.state.isLoading && <h2 className="loading"><div></div></h2>}
           {this.state.filteredMovies.length > 0 && < MovieContainer {...this.state.filteredMovies} />}
           {!this.state.beingSearched && < MovieContainer {...this.state.movies} />}
         </section>

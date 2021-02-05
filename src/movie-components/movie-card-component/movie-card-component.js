@@ -3,9 +3,9 @@ import React from 'react';
 
 function MovieCard (props) {
   return (
-    <section className='movie-card'>
-      <h1>{props.title}</h1>
+    <section className='movie-card'>    
       <img src={props.poster_path} alt={"Poster of " + props.title}/>
+      <h1>{props.title}</h1>
       <div>
         <h2>Genre(s)</h2>
         <p>{props.genres.join(' ')}</p>
