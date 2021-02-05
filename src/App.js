@@ -28,7 +28,9 @@ class App extends Component {
       })
     }
 
-    displaySingleMovieInfo(event) {
+    displaySingleMovieInfo = (event) => {
+      console.log(event.target.id);
+      let selectedMovie = this.state.movies.find(movie => movie.id === event.target.id);
       this.setState({singleMovieView: true})
     }
 
@@ -38,7 +40,7 @@ class App extends Component {
       <main className="main-dashboard">
         <Header />
         {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
-        {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} />}
+        {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} displaySingleMovieInfo={this.displaySingleMovieInfo}/>}
       </main>
     )
   }

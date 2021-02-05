@@ -14,7 +14,7 @@ function MovieCard (props) {
         <h2>Rating</h2>
         <p>{props.average_rating.toFixed(2)}</p>
       </div>
-      <button className="movie-details-btn">Details</button>
+      <button className="movie-details-btn" id={props.id} onClick={event => props.displaySingleMovieInfo(event)}>Details</button>
     </section>
   )
 }
