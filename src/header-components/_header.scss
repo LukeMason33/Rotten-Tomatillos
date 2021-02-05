@@ -1,16 +1,29 @@
 .header {
   display: flex;
+  height: 8vh;
   justify-content: space-around;
   align-items: center;
   background-color: lightgrey;
   margin-bottom: 2em;
   box-shadow: 1px 0 4px 1px black;
 
-  h1 {
+  .logo {
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
 
-  }
+    h1 {
+      font-size: 1.25em;
+      margin: 0 0 2px 0;
+    }
 
-  div {
+    div {
+      background: url('./reel-logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 50px;
+      width: 50px;
+    }
 
   }
 }
