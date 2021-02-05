@@ -9,8 +9,9 @@ class App extends React.Component {
     super();
     this.state = {
       movies: movieData.movies,
-      singleMovieView: false,
-      filteredMovies: []
+      singleMovie: [],
+      filteredMovies: [],
+      beingSearched: false,
     }
   }
 
@@ -20,9 +21,10 @@ class App extends React.Component {
       let search = event.target.value.toLowerCase()
       return title.includes(search)
       })
+    if (event.target.value.length > 0) {
+      this.setState({beingSearched: true})
+    }
     this.setState({filteredMovies: filtered})
-    console.log('FILTERED',this.state.filteredMovies)
-    console.log('ALL', this.state.movies)
   }
 
   render () {
@@ -30,7 +32,8 @@ class App extends React.Component {
       <main className="main-dashboard">
         <Header onChange={event => this.changeHandler(event)}/>
         <section className="movie-container">
-          < MovieContainer movies={this.state.movies} />
+          {this.state.filteredMovies.length > 0 && < MovieContainer {...this.state.filteredMovies} />}
+          {!this.state.beingSearched && < MovieContainer {...this.state.movies} />}
         </section>
       </main>
     )
