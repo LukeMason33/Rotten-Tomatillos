@@ -1,21 +1,24 @@
 import React from 'react';
 import './index.scss';
-import movieData from './data.js';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-component.js';
+import fetchRequests from './fetch-requests.js';
 
-class App extends React.Component {
+
+class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: movieData.movies,
       singleMovie: [],
       filteredMovies: [],
       beingSearched: false,
+      movies: [],
+      singleMovieView: false,
+      isLoading: true,
     }
   }
 
-  changeHandler = (event) => {
+   changeHandler = (event) => {
     let filtered = this.state.movies.filter(movie => {
       let title = movie.title.toLowerCase()
       let search = event.target.value.toLowerCase()
@@ -27,11 +30,26 @@ class App extends React.Component {
     this.setState({filteredMovies: filtered})
   }
 
+  componentDidMount() {
+    let allMovieInfo = [];
+    fetchRequests.getAllMovies()
+      .then(response => {
+        response.movies.forEach(movie => {
+          fetchRequests.getSingleMovie(movie.id)
+            .then(response => {
+              allMovieInfo.push(response.movie);
+              this.setState({movies: allMovieInfo, isLoading: false})
+            })
+        })
+      })
+    }
+
   render () {
     return (
       <main className="main-dashboard">
         <Header onChange={event => this.changeHandler(event)}/>
         <section className="movie-container">
+          {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
           {this.state.filteredMovies.length > 0 && < MovieContainer {...this.state.filteredMovies} />}
           {!this.state.beingSearched && < MovieContainer {...this.state.movies} />}
         </section>
