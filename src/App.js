@@ -35,6 +35,10 @@ class App extends Component {
       this.setState({singleMovieView: true, singleMovie: selectedMovie});
     }
 
+    displayMainDashboard = (event) => {
+      this.setState({singleMovieView: false, singleMovie: []});
+    }
+
 
   render () {
     return (
@@ -42,7 +46,7 @@ class App extends Component {
         <Header />
         {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
         {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} displaySingleMovieInfo={this.displaySingleMovieInfo}/>}
-        {this.state.singleMovieView && < SingleMovieView movie={this.state.singleMovie} />}
+        {this.state.singleMovieView && < SingleMovieView movie={this.state.singleMovie} displayMainDashboard={this.displayMainDashboard}/>}
       </main>
     )
   }

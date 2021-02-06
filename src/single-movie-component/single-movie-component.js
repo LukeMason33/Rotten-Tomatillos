@@ -1,7 +1,7 @@
 import React from 'react';
 
-function SingleMovieView({movie}) {
-  console.log(movie);
+function SingleMovieView(props) {
+  const movie = props.movie;
   return (
     <section className="single-movie-dashboard">
       <img src={movie.backdrop_path} alt={`Backdrop of ${movie.title}`}/>
@@ -11,17 +11,18 @@ function SingleMovieView({movie}) {
         <h2>Summary</h2>
         <p>{movie.overview}</p>
         <h2>Rating</h2>
-        <p>{`${movie.title} out of 10`}</p>
+        <p>{`${movie.average_rating.toFixed(2)} out of 10`}</p>
         <h2>Genres</h2>
-        <p>{movie.genres}</p>
+        <p>{movie.genres.join(', ')}</p>
         <h2>Release Date</h2>
         <p>{movie.release_date}</p>
         <h2>Movie Runtime</h2>
-        <p>{movie.runtime}</p>
+        <p>{`${movie.runtime} minutes`}</p>
         <h2>Budget</h2>
-        <p>{movie.budget}</p>
+        <p>{`$${movie.budget}`}</p>
         <h2>Revenue</h2>
         <p>{`$${movie.revenue}`}</p>
+        <button className="back-to-main-btn" onClick={event => props.displayMainDashboard(event)}>Return to Main Dasboard</button>
       </div>
     </section>
   )
