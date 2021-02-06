@@ -1,30 +1,26 @@
 function HeaderFilter(props) {
-  console.log('HEADERPROPS>>>>', props)
   let allGenres = Object.keys(props)
     .map(key => props[key].genres)
     .flat()
-  allGenres.splice(-1, 1)
   let genres = allGenres.reduce((acc, genre) => {
     if (!acc.includes(genre)) {
       acc.push(genre)
     }
     return acc
   }, [])
+  genres.splice(-1,1)
     return (
       <div className="header-filter">
-        Genres ⬇
-        <div>
+        <h1>Genre</h1>
+        <select onChange={props.onFilter}>
+          <option value='All'>All</option>
           {genres.map(genre => {
-            return <button value={genre} onClick={props.onClick}>{genre}</button>
+            return <option value={genre}>{genre}</option>
           }
           )}
-        </div>
+        </select>
       </div>
     )
 }
 
 export default HeaderFilter;
-
-/*
-
-*/

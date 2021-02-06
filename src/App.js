@@ -4,7 +4,6 @@ import MovieContainer from './movie-components/movie-container-component/movie-c
 import Header from './header-components/header-component.js';
 import fetchRequests from './fetch-requests.js';
 
-
 class App extends Component {
   constructor() {
     super();
@@ -31,13 +30,15 @@ class App extends Component {
   }
 
   filterHandler = (event) => {
+    if (event.target.value === 'All') {
+      this.setState({filteredMovies: [], beingSearched: false})
+      return
+    }
     let filtered = this.state.movies.filter(movie => {
       return movie.genres.includes(event.target.value)
     })
-    this.setState({beingSearched: true})
-    this.setState({filteredMovies: filtered})
+    this.setState({beingSearched: true, filteredMovies: filtered})
   }
-
 
   componentDidMount() {
     let allMovieInfo = [];
@@ -51,7 +52,6 @@ class App extends Component {
             })
         })
       })
-
     }
 
   render () {
@@ -59,13 +59,13 @@ class App extends Component {
       <main className="main-dashboard">
         <Header
           onChange={event => this.searchHandler(event)}
-          onClick={event => this.filterHandler(event)}
+          onFilter={event => this.filterHandler(event)}
           {...this.state.movies}
         />
         <section className="movie-container">
           {this.state.isLoading && <h2 className="loading"><div></div></h2>}
-          {this.state.filteredMovies.length > 0 && < MovieContainer {...this.state.filteredMovies} />}
-          {!this.state.beingSearched && < MovieContainer {...this.state.movies} />}
+          {this.state.filteredMovies.length > 0 && < MovieContainer movies={this.state.filteredMovies} />}
+          {!this.state.beingSearched && < MovieContainer movies={this.state.movies} />}
         </section>
       </main>
     )
