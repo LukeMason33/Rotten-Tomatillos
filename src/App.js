@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.scss';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
-import Header from './header-components/header-bar-component.js';
+import Header from './header-components/header-component.js';
 import SingleMovieView from './single-movie-component/single-movie-component.js';
 import fetchRequests from './fetch-requests.js';
 
@@ -45,8 +45,8 @@ class App extends Component {
       <main className="main-dashboard">
         <Header />
         {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
-        {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} displaySingleMovieInfo={this.displaySingleMovieInfo}/>}
-        {this.state.singleMovieView && < SingleMovieView movie={this.state.singleMovie} displayMainDashboard={this.displayMainDashboard}/>}
+        {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} onClick={event => this.displaySingleMovieInfo(event)}/>}
+        {this.state.singleMovieView && < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>}
       </main>
     )
   }

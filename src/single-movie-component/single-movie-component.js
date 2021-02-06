@@ -22,7 +22,7 @@ function SingleMovieView(props) {
         <p>{`$${movie.budget}`}</p>
         <h2>Revenue</h2>
         <p>{`$${movie.revenue}`}</p>
-        <button className="back-to-main-btn" onClick={event => props.displayMainDashboard(event)}>Return to Main Dasboard</button>
+        <button className="back-to-main-btn" onClick={props.onClick}>Return to Main Dasboard</button>
       </div>
     </section>
   )
