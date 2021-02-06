@@ -48,7 +48,7 @@ class App extends Component {
   render () {
     return (
       <main className="main-dashboard">
-        <Header onChange={event => this.changeHandler(event)}/>
+        <Header onChange={event => this.changeHandler(event)} {...this.state.movies}/>
         <section className="movie-container">
           {this.state.isLoading && <h2 className="loading"><div></div></h2>}
           {this.state.filteredMovies.length > 0 && < MovieContainer {...this.state.filteredMovies} />}
