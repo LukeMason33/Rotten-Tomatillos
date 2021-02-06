@@ -1,4 +1,20 @@
 .header-filter {
   padding: 2px;
   border: 1px solid black;
+  position: relative;
+
+
+  div {
+    position: fixed;
+    display: none;
+  }
+
+  &:hover {
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transform: translateX(-3%);
+    }
+  }
 }

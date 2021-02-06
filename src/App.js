@@ -18,7 +18,7 @@ class App extends Component {
     }
   }
 
-   changeHandler = (event) => {
+  searchHandler = (event) => {
     let filtered = this.state.movies.filter(movie => {
       let title = movie.title.toLowerCase()
       let search = event.target.value.toLowerCase()
@@ -29,6 +29,15 @@ class App extends Component {
     }
     this.setState({filteredMovies: filtered})
   }
+
+  filterHandler = (event) => {
+    let filtered = this.state.movies.filter(movie => {
+      return movie.genres.includes(event.target.value)
+    })
+    this.setState({beingSearched: true})
+    this.setState({filteredMovies: filtered})
+  }
+
 
   componentDidMount() {
     let allMovieInfo = [];
@@ -48,7 +57,11 @@ class App extends Component {
   render () {
     return (
       <main className="main-dashboard">
-        <Header onChange={event => this.changeHandler(event)} {...this.state.movies}/>
+        <Header
+          onChange={event => this.searchHandler(event)}
+          onClick={event => this.filterHandler(event)}
+          {...this.state.movies}
+        />
         <section className="movie-container">
           {this.state.isLoading && <h2 className="loading"><div></div></h2>}
           {this.state.filteredMovies.length > 0 && < MovieContainer {...this.state.filteredMovies} />}

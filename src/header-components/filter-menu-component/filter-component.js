@@ -1,4 +1,5 @@
 function HeaderFilter(props) {
+  console.log('HEADERPROPS>>>>', props)
   let allGenres = Object.keys(props)
     .map(key => props[key].genres)
     .flat()
@@ -9,14 +10,15 @@ function HeaderFilter(props) {
     }
     return acc
   }, [])
-  console.log(genres)
     return (
       <div className="header-filter">
         Genres ⬇
-        {genres.map(genre => {
-          return <div>{genre}</div>
-        }
-        )}
+        <div>
+          {genres.map(genre => {
+            return <button value={genre} onClick={props.onClick}>{genre}</button>
+          }
+          )}
+        </div>
       </div>
     )
 }
