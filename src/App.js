@@ -1,19 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './index.scss';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-component.js';
+import SingleMovieView from './single-movie-component/single-movie-component.js';
 import fetchRequests from './fetch-requests.js';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      singleMovie: [],
-      filteredMovies: [],
-      beingSearched: false,
       movies: [],
       singleMovieView: false,
       isLoading: true,
+      singleMovie: [],
+      filteredMovies: [],
+      beingSearched: false
     }
   }
 
@@ -54,6 +55,16 @@ class App extends Component {
       })
     }
 
+    displaySingleMovieInfo = (event) => {
+      let selectedMovie = this.state.movies.find(movie => movie.id == event.target.id);
+      this.setState({singleMovieView: true, singleMovie: selectedMovie});
+    }
+
+    displayMainDashboard = (event) => {
+      this.setState({singleMovieView: false, singleMovie: []});
+    }
+
+
   render () {
     return (
       <main className="main-dashboard">
@@ -62,11 +73,11 @@ class App extends Component {
           onFilter={event => this.filterHandler(event)}
           {...this.state.movies}
         />
-        <section className="movie-container">
-          {this.state.isLoading && <h2 className="loading"><div></div></h2>}
-          {this.state.filteredMovies.length > 0 && < MovieContainer movies={this.state.filteredMovies} />}
-          {!this.state.beingSearched && < MovieContainer movies={this.state.movies} />}
-        </section>
+        {this.state.isLoading && <h2 className="loading"><div></div></h2>}
+        {this.state.filteredMovies.length > 0 && < MovieContainer movies={this.state.filteredMovies} />}
+        {!this.state.beingSearched && < MovieContainer movies={this.state.movies} />}
+        {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} onClick={event => this.displaySingleMovieInfo(event)}/>}
+        {this.state.singleMovieView && < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>}
       </main>
     )
   }
