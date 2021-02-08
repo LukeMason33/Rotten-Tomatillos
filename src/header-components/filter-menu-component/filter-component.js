@@ -1,7 +1,24 @@
 function HeaderFilter(props) {
+  let allGenres = Object.keys(props)
+    .map(key => props[key].genres)
+    .flat()
+  let genres = allGenres.reduce((acc, genre) => {
+    if (!acc.includes(genre)) {
+      acc.push(genre)
+    }
+    return acc
+  }, [])
+  genres.splice(-1,1)
     return (
       <div className="header-filter">
-        Genres ⬇
+        <h1>Genre</h1>
+        <select onChange={props.onFilter}>
+          <option value='All'>All</option>
+          {genres.map(genre => {
+            return <option value={genre}>{genre}</option>
+          }
+          )}
+        </select>
       </div>
     )
 }

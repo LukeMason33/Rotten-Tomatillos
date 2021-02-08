@@ -9,6 +9,7 @@ function MovieContainer (props)  {
     })
     }
     </article>
+
   )
 }
 

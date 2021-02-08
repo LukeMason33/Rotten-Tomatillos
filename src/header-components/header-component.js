@@ -9,7 +9,7 @@ function Header(props) {
         <h1>Rotten Tomatillos</h1>
       </h1>
       <HeaderSearch onChange={props.onChange}/>
-      <HeaderFilter/>
+      <HeaderFilter {...props} onFilter={props.onFilter}/>
     </header>
   )
 }

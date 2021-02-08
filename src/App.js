@@ -12,8 +12,33 @@ class App extends Component {
       movies: [],
       singleMovieView: false,
       isLoading: true,
-      singleMovie: []
+      singleMovie: [],
+      filteredMovies: [],
+      beingSearched: false
     }
+  }
+
+  searchHandler = (event) => {
+    let filtered = this.state.movies.filter(movie => {
+      let title = movie.title.toLowerCase()
+      let search = event.target.value.toLowerCase()
+      return title.includes(search)
+      })
+    if (event.target.value.length > 0) {
+      this.setState({beingSearched: true})
+    }
+    this.setState({filteredMovies: filtered})
+  }
+
+  filterHandler = (event) => {
+    if (event.target.value === 'All') {
+      this.setState({filteredMovies: [], beingSearched: false})
+      return
+    }
+    let filtered = this.state.movies.filter(movie => {
+      return movie.genres.includes(event.target.value)
+    })
+    this.setState({beingSearched: true, filteredMovies: filtered})
   }
 
   componentDidMount() {
@@ -43,8 +68,14 @@ class App extends Component {
   render () {
     return (
       <main className="main-dashboard">
-        <Header />
-        {this.state.isLoading && <h2>Loading...Please Wait!</h2>}
+        <Header
+          onChange={event => this.searchHandler(event)}
+          onFilter={event => this.filterHandler(event)}
+          {...this.state.movies}
+        />
+        {this.state.isLoading && <h2 className="loading"><div></div></h2>}
+        {this.state.filteredMovies.length > 0 && < MovieContainer movies={this.state.filteredMovies} />}
+        {!this.state.beingSearched && < MovieContainer movies={this.state.movies} />}
         {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} onClick={event => this.displaySingleMovieInfo(event)}/>}
         {this.state.singleMovieView && < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>}
       </main>
