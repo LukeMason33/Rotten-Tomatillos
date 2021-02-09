@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './index.scss';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-component.js';
@@ -67,10 +72,7 @@ class App extends Component {
 
   render () {
     const displayAllOrSingleMovies = () => {
-      if (this.state.singleMovieView) {
-        return < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>
-      }
-      else if (this.state.filteredMovies.length > 0) {
+      if (this.state.filteredMovies.length > 0) {
         return < MovieContainer movies={this.state.filteredMovies} onClick={event => this.displaySingleMovieInfo(event)}/>
       }
       else {
@@ -85,7 +87,16 @@ class App extends Component {
           onFilter={event => this.filterHandler(event)}
           {...this.state.movies}
         />
-        {displayAllOrSingleMovies()}
+        <Switch>
+            <Route
+            exact path="/"
+            render={() => displayAllOrSingleMovies()}
+            />
+            <Route
+              path="/singleMovie"
+              render={() => < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>}
+            />
+          </Switch>
       </main>
     )
   }

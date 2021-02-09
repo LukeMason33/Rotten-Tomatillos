@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function SingleMovieView(props) {
   const movie = props.movie;
@@ -22,7 +23,7 @@ function SingleMovieView(props) {
         <p>{`$${movie.budget}`}</p>
         <h2>Revenue</h2>
         <p>{`$${movie.revenue}`}</p>
-        <button className="back-to-main-btn" onClick={props.onClick}>Return to Main Dasboard</button>
+        <Link to="/"><button className="back-to-main-btn" onClick={props.onClick}>Return to Main Dasboard</button></Link>
       </div>
     </section>
   )
