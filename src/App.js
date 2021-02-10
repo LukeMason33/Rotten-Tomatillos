@@ -14,9 +14,7 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      singleMovieView: false,
       isLoading: true,
-      singleMovie: [],
       filteredMovies: [],
       beingSearched: false
     }
@@ -59,23 +57,15 @@ class App extends Component {
       })
     }
 
-    displaySingleMovieInfo = (event) => {
-      let selectedMovie = this.state.movies.find(movie => movie.title === parseInt(event.target.id));
-      this.setState({singleMovieView: true, singleMovie: selectedMovie});
-    }
-
-    displayMainDashboard = (event) => {
-      this.setState({singleMovieView: false, singleMovie: []});
-    }
-
-
   render () {
     const displayAllOrSingleMovies = () => {
       if (this.state.filteredMovies.length > 0) {
-        return < MovieContainer movies={this.state.filteredMovies} onClick={event => this.displaySingleMovieInfo(event)}/>
+        return < MovieContainer movies={this.state.filteredMovies}/>
       }
-      else {
-        return < MovieContainer movies={this.state.movies} onClick={event => this.displaySingleMovieInfo(event)}/>
+      else if (this.state.movies.length > 0){
+        return < MovieContainer movies={this.state.movies}/>
+      } else {
+        return <h2 className="loading"><div></div></h2>
       }
     };
 
@@ -93,7 +83,9 @@ class App extends Component {
             />
             <Route
               path="/singleMovie/:title/:id"
-              render={({match}) => < SingleMovieView id={match.params.id}/>}
+              render={({match}) => {
+                return < SingleMovieView id={match.params.id} />
+              }}
             />
             <Route
               path="/genres"
