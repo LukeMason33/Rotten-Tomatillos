@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import './index.scss';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
@@ -61,7 +60,7 @@ class App extends Component {
     }
 
     displaySingleMovieInfo = (event) => {
-      let selectedMovie = this.state.movies.find(movie => movie.id == event.target.id);
+      let selectedMovie = this.state.movies.find(movie => movie.title === parseInt(event.target.id));
       this.setState({singleMovieView: true, singleMovie: selectedMovie});
     }
 
@@ -93,8 +92,12 @@ class App extends Component {
             render={() => displayAllOrSingleMovies()}
             />
             <Route
-              path="/singleMovie"
-              render={() => < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>}
+              path="/singleMovie/:title/:id"
+              render={({match}) => < SingleMovieView id={match.params.id}/>}
+            />
+            <Route
+              path="/genres"
+              render={() => < MovieContainer movies={this.state.filteredMovies} onClick={event => this.displaySingleMovieInfo(event)}/>}
             />
           </Switch>
       </main>

@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 function HeaderFilter(props) {
   let allGenres = Object.keys(props)
     .map(key => props[key].genres)
