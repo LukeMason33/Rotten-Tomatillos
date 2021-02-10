@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 function MovieCard (props) {
@@ -14,7 +15,7 @@ function MovieCard (props) {
         <h2>Rating</h2>
         <p>{props.average_rating.toFixed(2)}</p>
       </div>
-      <button className="movie-details-btn" id={props.id} onClick={props.onClick}>Details</button>
+      <Link to={`/singleMovie/${props.title}/${props.id}`}><button className="movie-details-btn" id={props.id} onClick={props.onClick}>Details</button></Link>
     </section>
   )
 }

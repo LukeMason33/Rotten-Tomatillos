@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+  Switch,
+  Route
+} from "react-router-dom";
 import './index.scss';
 import MovieContainer from './movie-components/movie-container-component/movie-container.js';
 import Header from './header-components/header-component.js';
@@ -10,9 +14,7 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      singleMovieView: false,
       isLoading: true,
-      singleMovie: [],
       filteredMovies: [],
       beingSearched: false
     }
@@ -55,26 +57,15 @@ class App extends Component {
       })
     }
 
-    displaySingleMovieInfo = (event) => {
-      let selectedMovie = this.state.movies.find(movie => movie.id == event.target.id);
-      this.setState({singleMovieView: true, singleMovie: selectedMovie});
-    }
-
-    displayMainDashboard = (event) => {
-      this.setState({singleMovieView: false, singleMovie: []});
-    }
-
-
   render () {
     const displayAllOrSingleMovies = () => {
-      if (this.state.singleMovieView) {
-        return < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>
+      if (this.state.filteredMovies.length > 0) {
+        return < MovieContainer movies={this.state.filteredMovies}/>
       }
-      else if (this.state.filteredMovies.length > 0) {
-        return < MovieContainer movies={this.state.filteredMovies} onClick={event => this.displaySingleMovieInfo(event)}/>
-      }
-      else {
-        return < MovieContainer movies={this.state.movies} onClick={event => this.displaySingleMovieInfo(event)}/>
+      else if (this.state.movies.length > 0){
+        return < MovieContainer movies={this.state.movies}/>
+      } else {
+        return <h2 className="loading"><div></div></h2>
       }
     };
 
@@ -85,7 +76,22 @@ class App extends Component {
           onFilter={event => this.filterHandler(event)}
           {...this.state.movies}
         />
-        {displayAllOrSingleMovies()}
+        <Switch>
+            <Route
+            exact path="/"
+            render={() => displayAllOrSingleMovies()}
+            />
+            <Route
+              path="/singleMovie/:title/:id"
+              render={({match}) => {
+                return < SingleMovieView id={match.params.id} />
+              }}
+            />
+            <Route
+              path="/genres"
+              render={() => < MovieContainer movies={this.state.filteredMovies} onClick={event => this.displaySingleMovieInfo(event)}/>}
+            />
+          </Switch>
       </main>
     )
   }
