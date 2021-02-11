@@ -1,14 +1,14 @@
 describe("Main Dasboard", () => {
 
   it('Should be able to visit the page and load with Money Plane and Mulan movie cards', () => {
-    cy.fixture('../fixtures/singleMovie.json')
+    cy.fixture('../fixtures/moneyPlane.json')
     .then((response) => {
       cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919", {
         statusCode: 200,
         body: response
       })
     })
-    cy.fixture('../fixtures/singleMovie.json')
+    cy.fixture('../fixtures/mulan.json')
     .then((response) => {
       cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/337401", {
         statusCode: 200,
@@ -53,6 +53,32 @@ describe("Main Dasboard", () => {
 
   it('Should be able to click details button on movie card to be routed to single movie page that has more details on that movie', () => {
     cy.get('#337401 .movie-details-btn').click()
+    cy.on("url:changed", (newUrl) => {
+      expect(newUrl).to.contain("/Mulan/337401")
+    })
+  })
+})
+
+describe('Single Movie Page', () => {
+  it('Should be able to visit single movie page', () => {
+    cy.fixture('../fixtures/mulan.json')
+    .then((response) => {
+      cy.intercept("GET", "https://rancid-tomatillos.herokuapp.com/api/v2/movies/337401", {
+        statusCode: 200,
+        body: response
+      })
+    })
+    cy.visit('http://localhost:3000/singleMovie/Mulan/337401')
   })
 
+  it('Should display the title', () => {
+    cy.get('.single-movie-dashboard').should('contain', 'Mulan')
+  })
+
+  it('Should be able to return to main dashboard by clicking Return To Dashboard button', () => {
+    cy.get('.back-to-main-btn').click()
+    cy.on("url:changed", (newUrl) => {
+      expect(newUrl).to.contain("/")
+    })
+  })
 })
