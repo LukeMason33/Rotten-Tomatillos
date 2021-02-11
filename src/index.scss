@@ -1,20 +1,9 @@
+@import "./sass/normalize";
+@import "./sass/variables";
+@import "./sass/element-styling";
 @import "./movie-components/movie-container-component/_movie-container";
 @import "./movie-components/movie-card-component/_movie-card.scss";
 @import "./header-components/_header.scss";
 @import "./header-components/search-bar-component/_search-bar.scss";
 @import "./header-components/filter-menu-component/_filter-menu.scss";
 @import "./single-movie-component/single-movie-component";
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
