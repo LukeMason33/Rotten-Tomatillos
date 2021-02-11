@@ -22,7 +22,7 @@ class SingleMovieView extends Component {
     if (!this.state.isLoading) {
       return (
         <section className="single-movie-dashboard">
-          <span className="side-right"></span>
+          <span className="side-left"></span>
           <div className="this.state.movie-info">
             <img src={this.state.movie.backdrop_path} alt={`Backdrop of ${this.state.movie.title}`}/>
             <h1>{this.state.movie.title}</h1>
@@ -41,15 +41,29 @@ class SingleMovieView extends Component {
                 <p>{`${this.state.movie.runtime} minutes`}</p>
               </h2>
               <h2>Budget
-                <p>{`$${this.state.movie.budget}`}</p>
+                <p>{`${
+                  !this.state.movie.budget ? 'No data available' :
+                  this.state.movie.budget.toLocaleString('en-us', {
+                    style: 'currency',
+                    currency: 'USD'
+                  })
+                  }`}
+                </p>
               </h2>
               <h2>Revenue
-                <p>{`$${this.state.movie.revenue}`}</p>
+                <p>{`${
+                  !this.state.movie.revenue ? 'No data available' :
+                  this.state.movie.revenue.toLocaleString('en-us', {
+                    style: 'currency',
+                    currency: 'USD'
+                  })
+                }`}
+                </p>
               </h2>
             </div>
             <Link to="/"><button className="back-to-main-btn">Return to Main Dasboard</button></Link>
           </div>
-          <span className="side-left"></span>
+          <span className="side-right"></span>
         </section>
       );
     } else {
