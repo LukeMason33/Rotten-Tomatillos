@@ -24,26 +24,48 @@ class SingleMovieView extends Component {
     if (!this.state.isLoading) {
       return (
         <section className="single-movie-dashboard">
-          <img src={this.state.movie.backdrop_path} alt={`Backdrop of ${this.state.movie.title}`}/>
+          <span className="side-left"></span>
           <div className="this.state.movie-info">
-            <h2>Movie Title</h2>
-            <p>{this.state.movie.title}</p>
-            <h2>Summary</h2>
+            <img src={this.state.movie.backdrop_path} alt={`Backdrop of ${this.state.movie.title}`}/>
+            <h1>{this.state.movie.title}</h1>
             <p>{this.state.movie.overview}</p>
-            <h2>Rating</h2>
-            <p>{`${this.state.movie.average_rating.toFixed(2)} out of 10`}</p>
-            <h2>Genres</h2>
-            <p>{this.state.movie.genres.join(', ')}</p>
-            <h2>Release Date</h2>
-            <p>{this.state.movie.release_date}</p>
-            <h2>Movie Runtime</h2>
-            <p>{`${this.state.movie.runtime} minutes`}</p>
-            <h2>Budget</h2>
-            <p>{`$${this.state.movie.budget}`}</p>
-            <h2>Revenue</h2>
-            <p>{`$${this.state.movie.revenue}`}</p>
+            <div className="details-wrapper">
+              <h2>Rating
+                <p>{`${this.state.movie.average_rating.toFixed(2)} out of 10`}</p>
+              </h2>
+              <h2>Genres
+                <p>{this.state.movie.genres.join(', ')}</p>
+              </h2>
+              <h2>Release Date
+                <p>{this.state.movie.release_date}</p>
+              </h2>
+              <h2>Runtime
+                <p>{`${this.state.movie.runtime} minutes`}</p>
+              </h2>
+              <h2>Budget
+                <p>{`${
+                  !this.state.movie.budget ? 'No data available' :
+                  this.state.movie.budget.toLocaleString('en-us', {
+                    style: 'currency',
+                    currency: 'USD'
+                  })
+                  }`}
+                </p>
+              </h2>
+              <h2>Revenue
+                <p>{`${
+                  !this.state.movie.revenue ? 'No data available' :
+                  this.state.movie.revenue.toLocaleString('en-us', {
+                    style: 'currency',
+                    currency: 'USD'
+                  })
+                }`}
+                </p>
+              </h2>
+            </div>
             <Link to="/"><button className="back-to-main-btn">Return to Main Dasboard</button></Link>
           </div>
+          <span className="side-right"></span>
         </section>
       );
     }
