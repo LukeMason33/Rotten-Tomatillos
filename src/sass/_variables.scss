@@ -1,0 +1,23 @@
+$curtain-red: #ff3a3a;
+$curtain-dark: #653232;
+
+@mixin curtains($direction) {
+  background: linear-gradient(to $direction,
+  black 0%,
+ $curtain-dark 3%,
+ $curtain-red 14%,
+ $curtain-red 16%,
+ $curtain-dark 30%,
+ black 42%,
+ $curtain-dark 50%,
+ $curtain-red 60%,
+ $curtain-red 65%,
+ $curtain-dark 75%,
+ black 80%,
+ $curtain-dark 85%,
+ $curtain-red 90%,
+ $curtain-dark 95%,
+ $curtain-dark 99%,
+ black 99.9%
+ );
+}
