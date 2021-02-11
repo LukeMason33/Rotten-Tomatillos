@@ -1,7 +1,8 @@
 const fetchRequests = {
   handleFetchError: (response) => {
    if(!response.ok) {
-     throw response;
+     const errorMessage = 'Our server is having a hard time at the moment. Try refreshing the page!';
+     throw errorMessage;
    }
    return response;
  },

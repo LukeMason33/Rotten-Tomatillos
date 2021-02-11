@@ -7,7 +7,8 @@ class SingleMovieView extends Component {
     super();
     this.state = {
       movie: [],
-      isLoading: true
+      isLoading: true,
+      error: ''
     }
   }
 
@@ -16,6 +17,7 @@ class SingleMovieView extends Component {
       .then(response => {
         this.setState({movie: response.movie, isLoading: false})
       })
+      .catch(error => this.setState({error: error}))
   }
 
   checkMount() {
@@ -44,7 +46,11 @@ class SingleMovieView extends Component {
           </div>
         </section>
       );
-    } else {
+    }
+    else if (this.state.error) {
+      return <h2 className="error-message">{this.state.error}</h2>
+    }
+     else {
       return <h2 className="loading"><div></div></h2>
     }
   }

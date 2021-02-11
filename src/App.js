@@ -16,7 +16,8 @@ class App extends Component {
       movies: [],
       isLoading: true,
       filteredMovies: [],
-      beingSearched: false
+      beingSearched: false,
+      error: ''
     }
   }
 
@@ -53,8 +54,10 @@ class App extends Component {
               allMovieInfo.push(response.movie);
               this.setState({movies: allMovieInfo, isLoading: false})
             })
+            .catch(error => this.setState({error: error}))
         })
       })
+      .catch(error => this.setState({error: error}))
     }
 
   render () {
@@ -64,7 +67,11 @@ class App extends Component {
       }
       else if (this.state.movies.length > 0){
         return < MovieContainer movies={this.state.movies}/>
-      } else {
+      }
+      else if (this.state.error) {
+        return <h2 className="error-message">{this.state.error}</h2>
+      }
+       else {
         return <h2 className="loading"><div></div></h2>
       }
     };
