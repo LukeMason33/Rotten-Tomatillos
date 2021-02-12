@@ -17,18 +17,22 @@ class App extends Component {
       isLoading: true,
       filteredMovies: [],
       beingSearched: false,
-      error: ''
+      error: '',
+      searchInput: ''
     }
   }
 
   searchHandler = (event) => {
+    let search = event.target.value.toLowerCase()
+    this.setState({searchInput: search})
     let filtered = this.state.movies.filter(movie => {
       let title = movie.title.toLowerCase()
-      let search = event.target.value.toLowerCase()
-      return title.includes(search)
+      return title.includes(this.state.searchInput)
       })
     if (event.target.value.length > 0) {
       this.setState({beingSearched: true})
+    } else if (event.target.value.length === 0) {
+      this.setState({beingSearched: false})
     }
     this.setState({filteredMovies: filtered})
   }
@@ -41,7 +45,7 @@ class App extends Component {
     let filtered = this.state.movies.filter(movie => {
       return movie.genres.includes(event.target.value)
     })
-    this.setState({beingSearched: true, filteredMovies: filtered})
+    this.setState({filteredMovies: filtered})
   }
 
   componentDidMount() {
@@ -59,6 +63,11 @@ class App extends Component {
       })
       .catch(error => this.setState({error: error}))
     }
+
+  clearInput() {
+    this.setState({searchInput: ''})
+    
+  }
 
   render () {
     const displayAllOrSingleMovies = () => {
@@ -81,6 +90,7 @@ class App extends Component {
         <Header
           onChange={event => this.searchHandler(event)}
           onFilter={event => this.filterHandler(event)}
+          beingSearched={this.state.beingSearched}
           {...this.state.movies}
         />
         <Switch>
@@ -96,7 +106,9 @@ class App extends Component {
             />
             <Route
               path="/genres"
-              render={() => < MovieContainer movies={this.state.filteredMovies} onClick={event => this.displaySingleMovieInfo(event)}/>}
+              render={() => < MovieContainer
+                 movies={this.state.filteredMovies}
+                 onClick={event => this.clearInput(event)}/>}
             />
           </Switch>
       </main>

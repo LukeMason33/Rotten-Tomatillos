@@ -11,18 +11,30 @@ function HeaderFilter(props) {
     return acc
   }, [])
   genres.splice(-1,1)
-    return (
-      <div className="header-filter">
-        <h1>Genre</h1>
-        <select onChange={props.onFilter}>
-          <option value='All'>All</option>
-          {genres.map(genre => {
-            return <option value={genre}>{genre}</option>
-          }
-          )}
-        </select>
-      </div>
-    )
+  console.log(props.beingSearched)
+  if (!props.beingSearched) {
+      return (
+        <div className="header-filter">
+          <h1>Genre</h1>
+          <select onChange={props.onFilter}>
+            <option value='All'>All</option>
+            {genres.map(genre => {
+              return <option value={genre}>{genre}</option>
+            }
+            )}
+          </select>
+        </div>
+      )
+    } else {
+      return (
+        <div className="header-filter">
+          <h1>Genre</h1>
+          <select onChange={props.onFilter}>
+            <option value='All'>All</option>
+          </select>
+        </div>
+      )
+    }
 }
 
 export default HeaderFilter;
