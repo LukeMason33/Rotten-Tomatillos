@@ -20,7 +20,7 @@ const fetchRequests = {
   },
 
   getMovieTrailer: (movieID) => {
-    return fecth(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}/videos`)
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}/videos`)
       .then(response => fetchRequests.handleFetchError(response))
       .then(response => response.json())
   }

@@ -7,17 +7,21 @@ class SingleMovieView extends Component {
     super();
     this.state = {
       movie: [],
+      trailer: [],
       isLoading: true,
       error: ''
     }
   }
 
   componentDidMount() {
-    fetchRequests.getSingleMovie(parseInt(this.props.id))
-      .then(response => {
-        this.setState({movie: response.movie, isLoading: false})
+    Promise.all([fetchRequests.getSingleMovie(parseInt(this.props.id)), fetchRequests.getMovieTrailer(parseInt(this.props.id))])
+      .then(data => {
+        this.setState({
+          movie: data[0].movie,
+          trailer: data[1].videos,
+          isLoading: false
+        })
       })
-      .catch(error => this.setState({error: error}))
   }
 
   checkMount() {
