@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import MovieTrailer from './movie-trailer/movie-trailer.js';
 import fetchRequests from '../fetch-requests.js';
 
 class SingleMovieView extends Component {
@@ -8,6 +9,7 @@ class SingleMovieView extends Component {
     this.state = {
       movie: [],
       trailer: [],
+      trailerView: false,
       isLoading: true,
       error: ''
     }
@@ -24,8 +26,12 @@ class SingleMovieView extends Component {
       })
   }
 
+  displayTrailer = (event) => {
+    this.setState({trailerView: true})
+  }
+
   checkMount() {
-    if (!this.state.isLoading) {
+    if (!this.state.isLoading && !this.state.trailerView) {
       return (
         <section className="single-movie-dashboard">
           <span className="side-left"></span>
@@ -68,6 +74,7 @@ class SingleMovieView extends Component {
               </h2>
             </div>
             <Link to="/"><button className="back-to-main-btn">Home</button></Link>
+            <button className="view-trailer-btn" onClick={event => this.displayTrailer(event)}>View Trailer</button>
           </div>
           <span className="side-right"></span>
         </section>
@@ -75,6 +82,9 @@ class SingleMovieView extends Component {
     }
     else if (this.state.error) {
       return <h2 className="error-message">{this.state.error}</h2>
+    }
+    else if (this.state.trailerView) {
+      return < MovieTrailer trailer={this.state.trailer} />
     }
      else {
       return <h2 className="loading"><div></div></h2>
