@@ -63,7 +63,7 @@ class SingleMovieView extends Component {
                 </p>
               </h2>
             </div>
-            <Link to="/"><button className="back-to-main-btn">Return to Main Dasboard</button></Link>
+            <Link to="/"><button className="back-to-main-btn">Home</button></Link>
           </div>
           <span className="side-right"></span>
         </section>

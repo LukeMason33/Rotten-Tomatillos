@@ -1,6 +1,10 @@
 $curtain-red: #ff3a3a;
 $curtain-dark: #653232;
 
+@mixin logoFont() {
+  font-family: 'Limelight', cursive;
+}
+
 @mixin curtains($direction) {
   background: linear-gradient(to $direction,
   black 0%,

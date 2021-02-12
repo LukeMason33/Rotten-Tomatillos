@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 function MovieCard (props) {
   return (
     <section className='movie-card' id={props.id}>
-      <h1>{props.title}</h1>
       <img src={props.poster_path} alt={"Poster of " + props.title}/>
+      <h1>{props.title}</h1>
       <div>
         <h2>Genre(s)</h2>
         <p>{props.genres.join(' ')}</p>
