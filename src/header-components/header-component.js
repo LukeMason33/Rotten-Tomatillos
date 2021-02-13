@@ -6,7 +6,7 @@ function Header(props) {
     <header className="header">
       <div className="logo">
         <div ></div>
-        <h1>Rotten Tomatillos</h1>
+        <h1>Rotten<br/>Tomatillos</h1>
       </div>
       <HeaderSearch onChange={props.onChange} {...props}/>
       <HeaderFilter {...props} onFilter={props.onFilter}/>

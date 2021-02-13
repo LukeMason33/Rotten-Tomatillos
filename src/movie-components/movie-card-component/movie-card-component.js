@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 function MovieCard (props) {
   return (
     <section className='movie-card' id={props.id}>
-      <h1>{props.title}</h1>
       <img src={props.poster_path} alt={"Poster of " + props.title}/>
+      <h1>{props.title}</h1>
       <div>
         <h2>Genre(s)</h2>
         <p>{props.genres.join(' ')}</p>
@@ -15,7 +15,9 @@ function MovieCard (props) {
         <h2>Rating</h2>
         <p>{props.average_rating.toFixed(2)}</p>
       </div>
-      <Link to={`/singleMovie/${props.title}/${props.id}`}><button className="movie-details-btn" id={props.id} onClick={props.onClick}>Details</button></Link>
+      <Link to={`/singleMovie/${props.title}/${props.id}`}>
+        <button className="movie-details-btn" id={props.id} onClick={props.onClick}>Details</button>
+      </Link>
     </section>
   )
 }

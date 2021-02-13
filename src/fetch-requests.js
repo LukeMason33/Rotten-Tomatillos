@@ -17,6 +17,12 @@ const fetchRequests = {
     return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}`)
       .then(response => fetchRequests.handleFetchError(response))
       .then(response => response.json())
+  },
+
+  getMovieTrailer: (movieID) => {
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}/videos`)
+      .then(response => fetchRequests.handleFetchError(response))
+      .then(response => response.json())
   }
 }
 
