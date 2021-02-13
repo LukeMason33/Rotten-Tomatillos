@@ -2,10 +2,16 @@ import React from 'react';
 
 function HeaderSearch(props) {
     return (
-      <form className="header-search-bar">
-        <input name="search-for-Movies" type='text' placeholder='Search Movies..' onChange={props.onChange}>
+      <div className="header-search-bar">
+        <input
+          name="search-for-Movies"
+          type='text'
+          placeholder='Search Movies..'
+          value={props.searchInput}
+          onChange={props.onChange}
+        >
         </input>
-      </form>
+      </div>
     )
 }
 

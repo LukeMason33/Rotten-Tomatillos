@@ -23,8 +23,8 @@ class App extends Component {
   }
 
   searchHandler = (event) => {
+    this.setState({searchInput: event.target.value})
     let search = event.target.value.toLowerCase()
-    this.setState({searchInput: search})
     let filtered = this.state.movies.filter(movie => {
       let title = movie.title.toLowerCase()
       return title.includes(this.state.searchInput)
@@ -65,8 +65,7 @@ class App extends Component {
     }
 
   clearInput() {
-    this.setState({searchInput: ''})
-
+    this.setState({searchInput: '', filteredMovies: [], beingSearched: false})
   }
 
   render () {
@@ -74,12 +73,14 @@ class App extends Component {
       if (this.state.filteredMovies.length > 0) {
         return (
           <>
-           < MovieContainer movies={this.state.filteredMovies}/>
+           < MovieContainer
+            movies={this.state.filteredMovies}
+            onClick={event => this.clearInput(event)}
+            />
            <Header
            onChange={event => this.searchHandler(event)}
            onFilter={event => this.filterHandler(event)}
-           beingSearched={this.state.beingSearched}
-           {...this.state.movies}
+           {...this.state}
            />
          </>
        );
@@ -87,12 +88,14 @@ class App extends Component {
       else if (this.state.movies.length > 0){
         return (
           <>
-            < MovieContainer movies={this.state.movies}/>
+            < MovieContainer
+             movies={this.state.movies}
+             onClick={event => this.clearInput(event)}
+             />
             <Header
               onChange={event => this.searchHandler(event)}
               onFilter={event => this.filterHandler(event)}
-              beingSearched={this.state.beingSearched}
-              {...this.state.movies}
+              {...this.state}
             />
           </>
         );
@@ -107,7 +110,6 @@ class App extends Component {
 
     return (
       <main className="main-dashboard">
-
         <Switch>
             <Route
             exact path="/"
@@ -118,12 +120,6 @@ class App extends Component {
               render={({match}) => {
                 return < SingleMovieView id={match.params.id} />
               }}
-            />
-            <Route
-              path="/genres"
-              render={() => < MovieContainer
-                 movies={this.state.filteredMovies}
-                 onClick={event => this.clearInput(event)}/>}
             />
           </Switch>
       </main>

@@ -1,16 +1,13 @@
 import {Link} from 'react-router-dom';
 
 function HeaderFilter(props) {
-  let allGenres = Object.keys(props)
-    .map(key => props[key].genres)
-    .flat()
+  let allGenres = props.movies.map(movie => movie.genres).flat()
   let genres = allGenres.reduce((acc, genre) => {
     if (!acc.includes(genre)) {
       acc.push(genre)
     }
     return acc
   }, [])
-  genres.splice(-1,1)
   if (!props.beingSearched) {
       return (
         <div className="header-filter">
