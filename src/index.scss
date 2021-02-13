@@ -7,9 +7,12 @@
 @import "./header-components/search-bar-component/_search-bar.scss";
 @import "./header-components/filter-menu-component/_filter-menu.scss";
 @import "./single-movie-component/single-movie-component";
+@import "./single-movie-component/movie-trailer/movie-trailer";
 
 
 .error-message {
   margin-top: 15vh;
   text-align: center;
+  height: 50vh;
+  width: 95vh;
 }

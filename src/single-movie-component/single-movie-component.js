@@ -26,8 +26,8 @@ class SingleMovieView extends Component {
       })
   }
 
-  displayTrailer = (event) => {
-    this.setState({trailerView: true})
+  toggleTrailerView = (event, bool) => {
+    this.setState({trailerView: bool})
   }
 
   checkMount() {
@@ -74,7 +74,7 @@ class SingleMovieView extends Component {
               </h2>
             </div>
             <Link to="/"><button className="back-to-main-btn">Home</button></Link>
-            <button className="view-trailer-btn" onClick={event => this.displayTrailer(event)}>View Trailer</button>
+            <button className="view-trailer-btn" onClick={event => this.toggleTrailerView(event, true)}>View Trailer</button>
           </div>
           <span className="side-right"></span>
         </section>
@@ -84,7 +84,7 @@ class SingleMovieView extends Component {
       return <h2 className="error-message">{this.state.error}</h2>
     }
     else if (this.state.trailerView) {
-      return < MovieTrailer trailer={this.state.trailer} />
+      return < MovieTrailer trailer={this.state.trailer} movie={this.state.movie} toggleTrailerView={this.toggleTrailerView}/>
     }
      else {
       return <h2 className="loading"><div></div></h2>
