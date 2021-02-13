@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import MovieTrailer from './movie-trailer/movie-trailer.js';
 import fetchRequests from '../fetch-requests.js';
 
 class SingleMovieView extends Component {
@@ -7,21 +8,30 @@ class SingleMovieView extends Component {
     super();
     this.state = {
       movie: [],
+      trailer: [],
+      trailerView: false,
       isLoading: true,
       error: ''
     }
   }
 
   componentDidMount() {
-    fetchRequests.getSingleMovie(parseInt(this.props.id))
-      .then(response => {
-        this.setState({movie: response.movie, isLoading: false})
+    Promise.all([fetchRequests.getSingleMovie(parseInt(this.props.id)), fetchRequests.getMovieTrailer(parseInt(this.props.id))])
+      .then(data => {
+        this.setState({
+          movie: data[0].movie,
+          trailer: data[1].videos,
+          isLoading: false
+        })
       })
-      .catch(error => this.setState({error: error}))
+  }
+
+  toggleTrailerView = (event, bool) => {
+    this.setState({trailerView: bool})
   }
 
   checkMount() {
-    if (!this.state.isLoading) {
+    if (!this.state.isLoading && !this.state.trailerView) {
       return (
         <section className="single-movie-dashboard">
           <span className="side-left"></span>
@@ -63,7 +73,12 @@ class SingleMovieView extends Component {
                 </p>
               </h2>
             </div>
-            <Link to="/"><button className="back-to-main-btn">Home</button></Link>
+            <div className="single-movie-buttons-container">
+              <Link to="/">
+                <button className="back-to-main-btn">Home</button>
+              </Link>
+                <button className="view-trailer-btn" onClick={event => this.toggleTrailerView(event, true)}>View Trailer</button>
+            </div>
           </div>
           <span className="side-right"></span>
         </section>
@@ -71,6 +86,13 @@ class SingleMovieView extends Component {
     }
     else if (this.state.error) {
       return <h2 className="error-message">{this.state.error}</h2>
+    }
+    else if (this.state.trailerView) {
+      return < MovieTrailer
+       trailer={this.state.trailer}
+       movie={this.state.movie}
+       toggleTrailerView={this.toggleTrailerView}
+       />
     }
      else {
       return <h2 className="loading"><div></div></h2>
