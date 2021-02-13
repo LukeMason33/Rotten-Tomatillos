@@ -17,18 +17,22 @@ class App extends Component {
       isLoading: true,
       filteredMovies: [],
       beingSearched: false,
-      error: ''
+      error: '',
+      searchInput: ''
     }
   }
 
   searchHandler = (event) => {
+    this.setState({searchInput: event.target.value})
+    let search = event.target.value.toLowerCase()
     let filtered = this.state.movies.filter(movie => {
       let title = movie.title.toLowerCase()
-      let search = event.target.value.toLowerCase()
-      return title.includes(search)
+      return title.includes(this.state.searchInput)
       })
     if (event.target.value.length > 0) {
       this.setState({beingSearched: true})
+    } else if (event.target.value.length === 0) {
+      this.setState({beingSearched: false})
     }
     this.setState({filteredMovies: filtered})
   }
@@ -41,7 +45,7 @@ class App extends Component {
     let filtered = this.state.movies.filter(movie => {
       return movie.genres.includes(event.target.value)
     })
-    this.setState({beingSearched: true, filteredMovies: filtered})
+    this.setState({filteredMovies: filtered})
   }
 
   componentDidMount() {
@@ -60,13 +64,41 @@ class App extends Component {
       .catch(error => this.setState({error: error}))
     }
 
+  clearInput() {
+    this.setState({searchInput: '', filteredMovies: [], beingSearched: false})
+  }
+
   render () {
     const displayAllOrSingleMovies = () => {
       if (this.state.filteredMovies.length > 0) {
-        return < MovieContainer movies={this.state.filteredMovies}/>
+        return (
+          <>
+           < MovieContainer
+            movies={this.state.filteredMovies}
+            onClick={event => this.clearInput(event)}
+            />
+           <Header
+           onChange={event => this.searchHandler(event)}
+           onFilter={event => this.filterHandler(event)}
+           {...this.state}
+           />
+         </>
+       );
       }
       else if (this.state.movies.length > 0){
-        return < MovieContainer movies={this.state.movies}/>
+        return (
+          <>
+            < MovieContainer
+             movies={this.state.movies}
+             onClick={event => this.clearInput(event)}
+             />
+            <Header
+              onChange={event => this.searchHandler(event)}
+              onFilter={event => this.filterHandler(event)}
+              {...this.state}
+            />
+          </>
+        );
       }
       else if (this.state.error) {
         return <h2 className="error-message">{this.state.error}</h2>
@@ -78,11 +110,6 @@ class App extends Component {
 
     return (
       <main className="main-dashboard">
-        <Header
-          onChange={event => this.searchHandler(event)}
-          onFilter={event => this.filterHandler(event)}
-          {...this.state.movies}
-        />
         <Switch>
             <Route
             exact path="/"
@@ -93,10 +120,6 @@ class App extends Component {
               render={({match}) => {
                 return < SingleMovieView id={match.params.id} />
               }}
-            />
-            <Route
-              path="/genres"
-              render={() => < MovieContainer movies={this.state.filteredMovies} onClick={event => this.displaySingleMovieInfo(event)}/>}
             />
           </Switch>
       </main>

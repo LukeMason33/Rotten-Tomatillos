@@ -16,7 +16,7 @@ function MovieCard (props) {
         <p>{props.average_rating.toFixed(2)}</p>
       </div>
       <Link to={`/singleMovie/${props.title}/${props.id}`}>
-        <button className="movie-details-btn" id={props.id}>Details</button>
+        <button className="movie-details-btn" id={props.id} onClick={props.onClick}>Details</button>
       </Link>
     </section>
   )
