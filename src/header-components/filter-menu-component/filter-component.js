@@ -11,7 +11,6 @@ function HeaderFilter(props) {
     return acc
   }, [])
   genres.splice(-1,1)
-  console.log(props.beingSearched)
   if (!props.beingSearched) {
       return (
         <div className="header-filter">

@@ -66,16 +66,36 @@ class App extends Component {
 
   clearInput() {
     this.setState({searchInput: ''})
-    
+
   }
 
   render () {
     const displayAllOrSingleMovies = () => {
       if (this.state.filteredMovies.length > 0) {
-        return < MovieContainer movies={this.state.filteredMovies}/>
+        return (
+          <>
+           < MovieContainer movies={this.state.filteredMovies}/>
+           <Header
+           onChange={event => this.searchHandler(event)}
+           onFilter={event => this.filterHandler(event)}
+           beingSearched={this.state.beingSearched}
+           {...this.state.movies}
+           />
+         </>
+       );
       }
       else if (this.state.movies.length > 0){
-        return < MovieContainer movies={this.state.movies}/>
+        return (
+          <>
+            < MovieContainer movies={this.state.movies}/>
+            <Header
+              onChange={event => this.searchHandler(event)}
+              onFilter={event => this.filterHandler(event)}
+              beingSearched={this.state.beingSearched}
+              {...this.state.movies}
+            />
+          </>
+        );
       }
       else if (this.state.error) {
         return <h2 className="error-message">{this.state.error}</h2>
@@ -87,12 +107,7 @@ class App extends Component {
 
     return (
       <main className="main-dashboard">
-        <Header
-          onChange={event => this.searchHandler(event)}
-          onFilter={event => this.filterHandler(event)}
-          beingSearched={this.state.beingSearched}
-          {...this.state.movies}
-        />
+
         <Switch>
             <Route
             exact path="/"
