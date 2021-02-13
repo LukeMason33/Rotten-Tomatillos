@@ -12,7 +12,7 @@ function MovieTrailer(props) {
           <button className="back-to-details-btn" onClick={event => props.toggleTrailerView(event, false)}>Back To Movie Details</button>
         </Link>
         <Link to="/">
-          <button className="back-to-details-btn">Back To Home</button>
+          <button className="back-to-home-btn">Back To Home</button>
         </Link>
       </div>
     </div>
