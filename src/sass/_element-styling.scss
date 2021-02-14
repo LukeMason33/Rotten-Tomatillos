@@ -11,6 +11,16 @@ body {
 button {
   cursor: pointer;
   justify-self: center;
+  background-color: $curtain-red;
+  border: aqua;
+  width: 10vw;
+  height: 5.5vh;
+  font-size: larger;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $curtain-dark;
+  }
 }
 
 * {

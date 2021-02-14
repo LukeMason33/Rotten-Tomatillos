@@ -12,10 +12,10 @@ function HeaderFilter(props) {
       return (
         <div className="header-filter">
           <h1>Genre</h1>
-          <select onChange={props.onFilter}>
+          <select onChange={props.onFilter} aria-label='filter-by-genre'>
             <option value='All'>All</option>
             {genres.map(genre => {
-              return <option value={genre}>{genre}</option>
+              return <option value={genre} aria-label={`filter-by-${genre}`}>{genre}</option>
             }
             )}
           </select>
