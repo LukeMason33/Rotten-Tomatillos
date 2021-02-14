@@ -2,21 +2,32 @@
 
 // Tablet
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 540px) {
 
   .header {
-    height: 90vh;
-    color: black;
+    justify-content: space-around;
 
     .logo {
-
-      div {
-        height: 40px;
-        width: 40px;
+      h1 {
+        font-size: 1em;
+        margin: 0 auto 1em auto;
       }
     }
-
+    .header-search-bar {
+      input {
+        width: 25vw;
+      }
+    }
   }
+
+  .single-movie-dashboard {
+    flex-direction: column;
+    
+    span {
+      display: none;
+    }
+  }
+
 }
 // Large Mobile
 // @media only screen and (max-width: )
