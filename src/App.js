@@ -70,7 +70,7 @@ class App extends Component {
 
   render () {
     const displayAllOrSingleMovies = () => {
-      if (this.state.filteredMovies.length > 0) {
+      if (this.state.beingSearched) {
         return (
           <>
            < MovieContainer
