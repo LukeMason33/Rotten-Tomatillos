@@ -8,6 +8,9 @@
 @import "./header-components/filter-menu-component/_filter-menu.scss";
 @import "./single-movie-component/single-movie-component";
 @import "./single-movie-component/movie-trailer/movie-trailer";
+@import "./sass/media-queries/tablet";
+@import "./sass/media-queries/large-phone";
+@import "./sass/media-queries/phone";
 
 
 .error-message {
