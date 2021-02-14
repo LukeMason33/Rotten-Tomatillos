@@ -1,0 +1,63 @@
+//  Mobile Devices
+
+// Tablet
+
+@media only screen and (max-width: 540px) {
+  .header {
+    justify-content: space-around;
+
+    .logo {
+      h1 {
+        font-size: 1em;
+        margin-bottom: .6em;
+      }
+      div {
+        height: 60px;
+        width: 60px;
+      }
+    }
+    .header-search-bar {
+      input {
+        width: 25vw;
+      }
+    }
+  }
+
+  .single-movie-dashboard {
+    justify-content: center;
+
+    span {
+      display: none;
+    }
+
+    img {
+      width: 85vw;
+    }
+
+    .summary {
+      width: 90vw;
+    }
+    .details-wrapper {
+      display: grid;
+      grid-template-columns: .5fr .5fr .5fr;
+
+      p {
+        height: 2em;
+        margin-top: .4em;
+      }
+    }
+  }
+
+
+  .movie-trailer-container {
+    position: fixed;
+    left: 0;
+    width: 100vw;
+  }
+
+}
+// Large Mobile
+// @media only screen and (max-width: )
+
+
+// Mobile

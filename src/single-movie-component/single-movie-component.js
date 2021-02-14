@@ -45,7 +45,7 @@ class SingleMovieView extends Component {
             <div className="this.state.movie-info">
               <img src={this.state.movie.backdrop_path} alt={`Backdrop of ${this.state.movie.title}`}/>
               <h1>{this.state.movie.title}</h1>
-              <p>{this.state.movie.overview}</p>
+              <p className="summary">{this.state.movie.overview}</p>
               <div className="details-wrapper">
                 <h2>Rating
                   <p>{`${this.state.movie.average_rating.toFixed(2)} out of 10`}</p>
