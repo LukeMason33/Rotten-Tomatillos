@@ -9,6 +9,7 @@ function HeaderSearch(props) {
           placeholder='Search Movies..'
           value={props.searchInput}
           onChange={props.onChange}
+          aria-label='search-movies-by-title'
         >
         </input>
       </div>
