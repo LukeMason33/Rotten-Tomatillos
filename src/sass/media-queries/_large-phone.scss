@@ -1,0 +1,45 @@
+@media only screen and (max-width: 414px) {
+  .header {
+
+    .logo {
+      h1 {
+        font-size: .75em;
+        margin-bottom: .4em;
+      }
+      div {
+        transform: translateY(.3em);
+        height: 50px;
+        width: 50px;
+      }
+    }
+    .header-search-bar {
+      input {
+        width: 30vw;
+      }
+    }
+    .header-filter {
+      select {
+        width: 3em;
+        margin-left: .2em;
+      }
+    }
+
+  }
+
+  .single-movie-dashboard {
+    h1 {
+      font-size: 2em;
+    }
+    .summary {
+      font-size: 1.5em;
+    }
+    .details-wrapper {
+      h2 {
+        font-size: 1.1em;
+      }
+      p {
+        font-size: .75em;
+      }
+    }
+  }
+}
