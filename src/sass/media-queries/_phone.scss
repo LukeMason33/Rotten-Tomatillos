@@ -1,0 +1,38 @@
+@media only screen and (max-width: 360px) {
+  .header {
+    justify-content: space-around;
+
+    .logo {
+      h1 {
+        font-size: .75em;
+      }
+      div {
+        height: 45px;
+        width: 45px;
+      }
+    }
+    .header-search-bar {
+      input {
+        width: 25vw;
+      }
+    }
+  }
+
+  .single-movie-dashboard {
+
+    .summary {
+      font-size: 1em;
+    }
+  }
+
+  .all-movies-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 300px));
+  }
+
+  .movie-card {
+    img {
+      height: 70%;
+    }
+  }
+
+}
