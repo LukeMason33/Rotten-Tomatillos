@@ -5,7 +5,7 @@ For this project, Jeff and I were given the prompt to create an informative movi
 This project was designed and implemented by [Luke Mason](https://github.com/LukeMason33) and [Jeff Kersting](https://github.com/JeffKersting)
 
 ## Usage
-The Rotten Tomatillos website is a site that allows users to browse a range of 40 different movies (all movies that are included in the given API) where each movie has it's own specific details. Users are able to view a movie's overall rating, summary, revenue, budget, runtime, as well as watch the official trailers for them which are pulled from YouTube.
+Rotten Tomatillos is a website that allows users to browse a range of 40 different movies (all movies that are included in the given API), where each movie has it's own specific details. Users are able to view a movie's overall rating, summary, revenue, budget, runtime, as well as watch the official trailers for them which are pulled from YouTube.
 
 Initially, when a user visits the site, they will be prompted to the main dashboard. No login necessary for this app!
 
