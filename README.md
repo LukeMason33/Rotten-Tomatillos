@@ -63,19 +63,28 @@ The detailed spec for this project can be found [here](https://frontend.turing.i
 ### Testing development
 The testing that we did for this application was all done through Cypress. At Turing, we have only been implementing unit tests to test our applications, but now that we are using React, we have been introduced to the Cypress testing library, where we tested each display of our site by writing end-to-end testing for both happy, and sad paths.
 
+## Wins and Challenges
+
 ### Challenges
-* This was our first experience receiving a large codebase we were unfamiliar with and needing to work on it. It was certainly a challenge to familiarize ourselves with what the code was doing and it was quite an undertaking to reorganize existing code to improve organization and functionality. Initially we struggled to find a good place to jump in and start refactoring, but eventually decided we should start by determining what within the codebase was already functioning well in terms of JavaScript functionality and User Experience/Interaction. After that, we were better able to plan out how to most efficiently move forward and use our time by dividing and conquering small tasks and communicating openly and frequently about new issues we found, or changes we would like to implement. We ended up having to separate our desired changes into `required` to dos and `desired` to dos (things that would be nice to implement but not our minimum viable product).
-* We ran into some resistance when trying to access all info from our network requests simultaneously. After some research we found `Promise.all()` which solved our issues, as it returns all the input network requests together.
-* Utilizing Sass/SCSS for the first time was interesting. It took some additional research on syntax and functionality of mixins vs built in color functions. The biggest challenge here was taking messy provided CSS and converting it into SCSS while refactoring and adjusting styling to improve UX.
-* Understanding WebPack - It was our first experience with WebPack so we had to do some research and fiddling to get it to work as we expected/wanted it to.
+
+#### Cypress
+The switch from unit testing to end-to-end testing presented interesting challenges. Implementing a new testing suite required some experimenting with the unique idiosyncrasies of Cypress. Properly implementing the use of fixtures and intercepts proved to be the most foreign and challenging concept encountered when learning to properly integrate end-to-end testing.
+
+#### React and Planning
+Planning the code architecture from the outset when developing with a new technology presented a challenge in the form of conceptualizing the code structure with a framework we had very little experience with. It required more in depth research and discussion than would normally be necessary in order to complete our rough draft of the architecture planning spec.
 
 ### Wins
-* Developing a strong understanding of a foreign codebase and being able to refactor significantly. While this was also one of our major challenges during the project, we were all very proud of our ability to quickly familiarize ourselves with the functionality and therefore refactor effectively.
-* Teamwork and dividing up work successfully without any major merge conflicts. We chose to implement a divide and conquer workflow, and because of our clear and frequent communication, we were extremely successful in getting tasks done more quickly. We also took the time to walk through all the changes together to be sure we fully understood all the changes.
+
+#### Successful React Implementation
+Once we dug into writing the code, and getting comfortable with some of the new concepts introduced with React, our project started moving forward very smoothly. We encountered very few issues or snags writing our code, and shared an enthusiasm for the usefulness and general quality of life improvements React offers. It was a watershed moment in our programming development when we were able to fully recognize the benefits that frameworks provide.
+
+#### End-to-End Testing
+After working through some of the initial hiccups of learning the Cypress testing suite, we were able to get comfortable and begin testing easily and effectively. Implementation of Cypress allowed us to fully conceptualize what the process of end-to-end testing entails, and underscored the importance of both unit testing as well as end-to-end testing. The use of a different testing systems brought the testing process as a whole into clearer focus.
 
 ## Future Iterations
-* Adding Recipes: A user would be able to submit a recipe to the site, and after admin review, it could be approved and added to the recipe database.
-* Admin view: Developing an Admin view for the site that could show some User trends and any submitted recipes waiting for review.
-* Rating Recipes: After a user has made a recipe they should be prompted to rate the recipe on a few different qualities (maybe difficulty level and approval). These ratings could then be visible to other users.
-* Providing the cost of the missing ingredients in order to make a recipe.
-* The button to remove items from pantry to only work if conditions are met where the user has enough of each ingredient to make the recipe.
+* Adding some sort of login so that users can have a more personalized experience such as adding movies to a list of "Want to Watch", or/and have users be able to leave their own reviews and comments on movies.
+* Another iteration is to just get more movies on the site to see how our current setup would handle fetching a lot more data than it currently does.
+* Build an admin view to handle unnecessary comments from users, or to be able to add new movies to our server for the user to see/interact with.
+
+## File Architecture
+![file architecture](./readme-images/file-architecture.png)
