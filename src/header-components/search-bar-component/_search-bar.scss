@@ -1,10 +1,18 @@
 .header-search-bar {
   display: flex;
   justify-content: center;
-  
+
   input {
     width: 20em;
     height: 1.25em;
     text-align: right;
   }
+}
+
+.no-search-match {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
 }

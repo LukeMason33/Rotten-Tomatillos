@@ -27,7 +27,7 @@ class App extends Component {
     let search = event.target.value.toLowerCase()
     let filtered = this.state.movies.filter(movie => {
       let title = movie.title.toLowerCase()
-      return title.includes(this.state.searchInput)
+      return title.includes(search)
       })
     if (event.target.value.length > 0) {
       this.setState({beingSearched: true})
@@ -70,18 +70,21 @@ class App extends Component {
 
   render () {
     const displayAllOrSingleMovies = () => {
-      if (this.state.beingSearched) {
+      if (this.state.beingSearched && this.state.filteredMovies.length === 0) {
+        console.log('TEST')
+        return (
+          <div className="no-search-match">
+            <h1>{`No titles found matching ${this.state.searchInput}`}</h1>
+          </div>
+        );
+      }
+      else if (this.state.beingSearched) {
         return (
           <>
            < MovieContainer
             movies={this.state.filteredMovies}
             onClick={event => this.clearInput(event)}
             />
-           <Header
-           onChange={event => this.searchHandler(event)}
-           onFilter={event => this.filterHandler(event)}
-           {...this.state}
-           />
          </>
        );
       }
@@ -92,11 +95,6 @@ class App extends Component {
              movies={this.state.movies}
              onClick={event => this.clearInput(event)}
              />
-            <Header
-              onChange={event => this.searchHandler(event)}
-              onFilter={event => this.filterHandler(event)}
-              {...this.state}
-            />
           </>
         );
       }
@@ -110,6 +108,11 @@ class App extends Component {
 
     return (
       <main className="main-dashboard">
+        <Header
+          onChange={event => this.searchHandler(event)}
+          onFilter={event => this.filterHandler(event)}
+          {...this.state}
+        />
         <Switch>
             <Route
             exact path="/"

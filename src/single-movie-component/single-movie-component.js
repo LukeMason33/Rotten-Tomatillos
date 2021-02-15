@@ -84,7 +84,7 @@ class SingleMovieView extends Component {
                 <Link to="/">
                   <button className="back-to-main-btn">Home</button>
                 </Link>
-                  <button className="view-trailer-btn" onClick={event => this.toggleTrailerView(event, true)}>View Trailer</button>
+                  <button className="view-trailer-btn" onClick={event => this.toggleTrailerView(event, true)}>Trailer</button>
               </div>
             </div>
             <span className="side-right"></span>
