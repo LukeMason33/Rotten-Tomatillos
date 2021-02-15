@@ -14,12 +14,12 @@ Initially, when a user visits the site, they will be prompted to the main dashbo
 
 Additionally, the user will be able to use the search bar located in the header of the screen to search for movies by title.
 
-![gif of search bar](http://www.giphy.com/gifs/jhY8WrGqE7DNN6L1fg)
+![gif of search bar](https://media.giphy.com/media/jhY8WrGqE7DNN6L1fg/giphy.gif)
 
 
 The user will also be able to filter the movies by genre!
 
-![gif of genre filter](http://www.giphy.com/gifs/T4dgIvz4r7DtA4qUS4)
+![gif of genre filter](https://media.giphy.com/media/T4dgIvz4r7DtA4qUS4/giphy.gif)
 
 When on the main page, the user can view these little cards for each movie. Each of the cards will include the title of the movie, the poster, the movie's genres, as well as the movie's rating. This is true for each movie that is included in our API data.
 
@@ -29,11 +29,11 @@ Movie Card:
 
 A user is able to click on that red button on the bottom of each card that says "Details" to view more in-depth information about that particular movie. When clicked, the user will be prompted to another page that contains that information. Here a user can view info such as the movie's budget, revenue, run-time, summary, etc.
 
-![gif of clicking movie details](http://www.giphy.com/gifs/qpw4WMckhwDZvJ9m6G)
+![gif of clicking movie details](https://media.giphy.com/media/isU9bs7lG3NFTvSZse/giphy.gif)
 
 When on one of the movies' details pages, the user will be given two options on where to go from here. One consists of a "Home" button, that when clicked, will take the user back to the main dashboard where all movies are displayed. The other option consists of a trailer for the particular movie. When this button ic clicked, the user will be displayed the trailer which can be played from within our website.
 
-![gif of trailer of movie](http://www.giphy.com/gifs/9RvewJKLpUFNn40nTO)
+![gif of trailer of movie](https://media.giphy.com/media/9RvewJKLpUFNn40nTO/giphy.gif)
 
 The user is given two options from the trailer display, to either return back to the movie's details page, or just go right back to the main dashboard.
 
@@ -78,4 +78,4 @@ The testing that we did for this application was all done through Cypress. At Tu
 * Admin view: Developing an Admin view for the site that could show some User trends and any submitted recipes waiting for review.
 * Rating Recipes: After a user has made a recipe they should be prompted to rate the recipe on a few different qualities (maybe difficulty level and approval). These ratings could then be visible to other users.
 * Providing the cost of the missing ingredients in order to make a recipe.
-* The button to remove items from pantry to only work if conditions are met where the user has enough of each ingredient to make the recipe. 
+* The button to remove items from pantry to only work if conditions are met where the user has enough of each ingredient to make the recipe.
