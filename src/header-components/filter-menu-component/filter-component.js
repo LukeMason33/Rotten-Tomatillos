@@ -1,5 +1,3 @@
-import {Link} from 'react-router-dom';
-
 function HeaderFilter(props) {
   let allGenres = props.movies.map(movie => movie.genres).flat()
   let genres = allGenres.reduce((acc, genre) => {
@@ -15,7 +13,7 @@ function HeaderFilter(props) {
           <select onChange={props.onFilter} aria-label='filter-by-genre'>
             <option value='All'>All</option>
             {genres.map(genre => {
-              return <option value={genre} aria-label={`filter-by-${genre}`}>{genre}</option>
+              return <option value={genre} aria-label={`filter-by-${genre}`} key={genre}>{genre}</option>
             }
             )}
           </select>

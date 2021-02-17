@@ -25,7 +25,7 @@ describe("Main Dasboard", () => {
   })
 
   it('Should render a header with correct elements', () => {
-    cy.get('Header .logo').should('contain', 'Rotten Tomatillos')
+    cy.get('Header .logo').should('contain', 'Rotten')
       .get('Header .header-search-bar')
       .get('Header .header-filter')
   })
@@ -40,6 +40,11 @@ describe("Main Dasboard", () => {
     cy.get('.movie-card h1').should('contain', 'Money Plane')
   })
 
+  it('Should be able to filter movies by genre', () => {
+    cy.get('Select').select('Drama')
+    cy.get('#694919').should('not.exist')
+  })
+
   it('Should be able to search movies by title', () => {
     cy.get('.header-search-bar input').type('money')
       .get('#337401').should('not.exist')
@@ -51,7 +56,7 @@ describe("Main Dasboard", () => {
   })
 
   it('Should be able to click details button on movie card to be routed to single movie page that has more details on that movie', () => {
-    cy.get('#337401 .movie-details-btn').click()
+    cy.get('#Mulan .movie-details-btn').click()
     cy.on("url:changed", (newUrl) => {
       expect(newUrl).to.contain("/Mulan/337401")
     })
