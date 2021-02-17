@@ -64,7 +64,6 @@ class App extends Component {
         })
       })
       .catch(error => this.setState({error: error}))
-      console.log(this.props.location)
     }
 
   clearInput() {
@@ -143,8 +142,3 @@ class App extends Component {
 }
 
 export default App;
-
-// {this.state.filteredMovies.length > 0 && < MovieContainer movies={this.state.filteredMovies} />}
-// {!this.state.beingSearched && < MovieContainer movies={this.state.movies} />}
-// {!this.state.singleMovieView && < MovieContainer movies={this.state.movies} onClick={event => this.displaySingleMovieInfo(event)}/>}
-// {this.state.singleMovieView && < SingleMovieView movie={this.state.singleMovie} onClick={event => this.displayMainDashboard(event)}/>}
