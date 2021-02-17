@@ -8,8 +8,8 @@ function Header(props) {
         <div ></div>
         <h1>Rotten<br/>Tomatillos</h1>
       </div>
-      <HeaderSearch onChange={props.onChange} {...props}/>
-      <HeaderFilter {...props} onFilter={props.onFilter}/>
+      {!props.singleMovieView && <HeaderSearch onChange={props.onChange} {...props}/>}
+      {!props.singleMovieView && <HeaderFilter {...props} onFilter={props.onFilter}/>}
     </header>
   )
 }

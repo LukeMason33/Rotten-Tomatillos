@@ -15,8 +15,10 @@ class App extends Component {
     this.state = {
       movies: [],
       isLoading: true,
+      singleMovieView: false,
       filteredMovies: [],
       beingSearched: false,
+      beingFiltered: false,
       error: '',
       searchInput: ''
     }
@@ -39,13 +41,13 @@ class App extends Component {
 
   filterHandler = (event) => {
     if (event.target.value === 'All') {
-      this.setState({filteredMovies: [], beingSearched: false})
+      this.setState({filteredMovies: [], beingFiltered: false})
       return
     }
     let filtered = this.state.movies.filter(movie => {
       return movie.genres.includes(event.target.value)
     })
-    this.setState({filteredMovies: filtered})
+    this.setState({filteredMovies: filtered, beingFiltered: true})
   }
 
   componentDidMount() {
@@ -62,40 +64,44 @@ class App extends Component {
         })
       })
       .catch(error => this.setState({error: error}))
+      console.log(this.props.location)
     }
 
   clearInput() {
-    this.setState({searchInput: '', filteredMovies: [], beingSearched: false})
+    this.setState({searchInput: '', filteredMovies: [], beingSearched: false, singleMovieView: true})
+  }
+
+  homeView() {
+    this.setState({singleMovieView: false, beingFiltered: false})
+  }
+
+  setSingleMovie() {
+    this.setState({singleMovieView: true})
   }
 
   render () {
     const displayAllOrSingleMovies = () => {
       if (this.state.beingSearched && this.state.filteredMovies.length === 0) {
-        console.log('TEST')
         return (
           <div className="no-search-match">
             <h1>{`No titles found matching ${this.state.searchInput}`}</h1>
           </div>
         );
       }
-      else if (this.state.beingSearched) {
+      else if (this.state.beingSearched || this.state.beingFiltered) {
         return (
-          <>
            < MovieContainer
             movies={this.state.filteredMovies}
             onClick={event => this.clearInput(event)}
             />
-         </>
        );
       }
       else if (this.state.movies.length > 0){
         return (
-          <>
             < MovieContainer
              movies={this.state.movies}
              onClick={event => this.clearInput(event)}
              />
-          </>
         );
       }
       else if (this.state.error) {
@@ -121,7 +127,13 @@ class App extends Component {
             <Route
               path="/singleMovie/:title/:id"
               render={({match}) => {
-                return < SingleMovieView id={match.params.id} />
+                return (
+                  < SingleMovieView
+                    id={match.params.id}
+                    homeView={event => this.homeView(event)}
+                    onMount ={event => this.setSingleMovie(event)}
+                  />
+                )
               }}
             />
           </Switch>

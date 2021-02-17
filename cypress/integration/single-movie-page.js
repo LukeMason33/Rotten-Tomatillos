@@ -21,8 +21,13 @@ describe('Single Movie Page', () => {
     cy.get('.single-movie-dashboard').should('contain', 'Mulan')
   })
 
+  it('Should no longer render the searchbar and filter components', () => {
+    cy.get('Header .header-search-bar').should('not.exist')
+    cy.get('Header .header-filter').should('not.exist')
+  })
+
   it('Should give the user an option to view the trailer', () => {
-    cy.get('.single-movie-buttons-container .view-trailer-btn').should('contain', 'View Trailer')
+    cy.get('.single-movie-buttons-container .view-trailer-btn').should('contain', 'Trailer')
   })
 
   it('Should display the trailer and hide movie details when clicking on View Trailer button', () => {
