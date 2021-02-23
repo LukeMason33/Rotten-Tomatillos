@@ -1,6 +1,9 @@
 # Rotten Tomatillos - Movie Info
 For this project, Jeff and I were given the prompt to create an informative movie website similar to Rotten Tomatoes, hence the name, Rotten Tomatillos. This is our first project using React, and any React related dependencies. The main scope of this project was to build a multi-page website that is: fetching information from an API, using React and React router, and doing end-to-end testing with cypress.
 
+### Visit Live Site Here
+[Rotten Tomatillos Live Site](https://enigmatic-thicket-88642.herokuapp.com/)
+
 ## Project Members
 This project was designed and implemented by [Luke Mason](https://github.com/LukeMason33) and [Jeff Kersting](https://github.com/JeffKersting)
 
@@ -43,10 +46,6 @@ The user is given two options from the trailer display, to either return back to
 3. Navigate into the repository on your machine
 4. Run `npm install`
 5. Run `npm start` to launch local server
-
-OR
-
-Visit live site [here]() (we will build this live right?)
 
 ## Technologies Used
 1. React
